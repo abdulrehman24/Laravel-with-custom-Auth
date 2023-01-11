@@ -24,7 +24,7 @@ class AuthController extends Controller
             return redirect('home')->withSuccess('Welcome!');
         }
         
-        return redirect('login')->withError('No such a user exist');
+        return redirect('login')->withError('No such a user exist')->withSuccess('Welcome!');
     }
 
     public function logout(Request $request) {
@@ -34,7 +34,8 @@ class AuthController extends Controller
         
         return redirect($route);
     }
-public function register(Request $request) {
+    
+    public function register(Request $request) {
         // dd($request->all());
         $request->validate([
             'email' => 'required|unique:users|email',
@@ -51,9 +52,8 @@ public function register(Request $request) {
         if(\Auth::attempt($request->only('email', 'password'))){
             return redirect('home')->withSuccess('Welcome!');
         }
-        
-        
     }
+
     public function register_view() {
         return view('auth.register');    
     }

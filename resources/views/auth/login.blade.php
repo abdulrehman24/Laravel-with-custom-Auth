@@ -43,9 +43,13 @@
                        
                         <div class="card-block">
                             @if (Session::has('error'))
-                                <p>{{ Session::get('error') }}</p>
-                            @else    
-                                <p>{{ Session::get('success') }}</p>
+                               
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    {{ Session::get('error') }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
                             @endif
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
@@ -99,7 +103,7 @@
                                     </a>
                                 @endif
                         </div>
-                        <div class="text-center">Don't have an account? <a><b>Signup</b></a></div>
+                        <div class="text-center">Don't have an account? <a href="{{ route('register') }}"><b>Signup</b></a></div>
                     </div>
                 </div>
             </div>
